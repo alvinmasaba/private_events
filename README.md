@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Eventbrite Clone Web Application via [The Odin Project.](https://www.theodinproject.com/lessons/ruby-on-rails-private-events)
 
-Things you may want to cover:
+This application is a private event management application built using Ruby on Rails which allows users to create and attend events.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The goal of this project is to strengthen practical understanding of Active Record Associations.
