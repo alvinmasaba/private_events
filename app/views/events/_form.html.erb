@@ -2,7 +2,7 @@
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
-    <%= team.errors.full_messages_for(:name).each do |message| %>
+    <%= event.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
@@ -10,7 +10,7 @@
   <div>
     <%= form.label :date %><br>
     <%= form.date_field :date %>
-    <%= team.errors.full_messages_for(:date).each do |message| %>
+    <%= event.errors.full_messages_for(:date).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
@@ -18,7 +18,7 @@
   <div>
     <%= form.label :location %><br>
     <%= form.text_field :location %>
-    <%= team.errors.full_messages_for(:location).each do |message| %>
+    <%= event.errors.full_messages_for(:location).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
