@@ -1,3 +1,7 @@
-<% @events.each do |event| %>
-  <%= event.name %>
-<% end %>
+<ol>
+  <% @events.each do |event| %>
+    <li>
+      <%= link_to "#{event.name}", event_path(event)%>
+    </li>
+  <% end %>
+</ol>

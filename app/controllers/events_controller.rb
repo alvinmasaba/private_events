@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @events = Event.all
   end
@@ -12,8 +14,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new
-    @event.build_creator(id: params[:user_id])
+    @event = Event.new(event_params)
+    @event.creator = current_user
 
     if @event.save!
       redirect_to @event
@@ -27,5 +29,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :date, :location)
   end
-
 end

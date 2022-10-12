@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+  overflow: auto;
+  width: 100%;
+}
+
+
+/* HEADER */
+
+.navbar {
+  height: 75px;
+  padding: 0 1.5rem;
+}
+
+.navbar .container-fluid {
+  gap: 3rem;
+}
+
+.navbar-nav {
+  gap: 2rem;
+  font-size: 20px;
+}
+
+.header-username {
+  text-emphasis: strong;
+}

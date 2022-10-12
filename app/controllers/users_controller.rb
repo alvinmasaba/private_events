@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def show
-    @events = Event.where(user_id: params[:id])
+    @events = current_user.events
   end
 end

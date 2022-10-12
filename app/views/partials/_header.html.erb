@@ -11,6 +11,14 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to "My Events", user_path(current_user) %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Create Event", new_event_path %>
+          </li>
+
+          <li class="nav-item">
             <%= link_to "Edit Membership", edit_user_registration_path %>
           </li>
 
