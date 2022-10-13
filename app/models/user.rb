@@ -4,17 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :events, foreign_key: :user_id, class_name: 'Event'
+  has_many :created_events, foreign_key: :creator_id, class_name: 'Event'
 
-  has_many :events_attended, foreign_key: :event_attendee_id
+  has_many :event_attendees, foreign_key: :event_attendee_id
 
-  has_many :attended_events, through: :events_attended
+  has_many :attended_events, through: :event_attendees, source: :attended_event
 
   def is_attending?(event)
-    AttendedEvent.exists?(:event_attendee_id => self.id, :attended_event_id => event.id)
-  end
-
-  def events_attending
-    AttendedEvent.where(:event_attendee_id => self.id).pluck(:attended_event_id)
+    event.attendees.include?(self)
   end
 end

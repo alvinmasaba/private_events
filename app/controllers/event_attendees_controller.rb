@@ -1,12 +1,12 @@
-class AttendedEventsController < ApplicationController
+class EventAttendeesController < ApplicationController
   before_action :authenticate_user!
   
   def new
-    @attended_event = AttendedEvent.new
+    @attended_event = EventAttendee.new
   end
 
   def create
-    @attended_event = AttendedEvent.new(attended_event_params)
+    @attended_event = EventAttendee.new(event_attendee_params)
 
     if @attended_event.save!
       redirect_to event_path(params[:attended_event_id])
@@ -17,7 +17,7 @@ class AttendedEventsController < ApplicationController
 
   private
 
-  def attended_event_params
+  def event_attendee_params
     params.permit(:event_attendee_id, :attended_event_id)
   end
 end
