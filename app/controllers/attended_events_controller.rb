@@ -1,4 +1,6 @@
 class AttendedEventsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @attended_event = AttendedEvent.new
   end
@@ -7,7 +9,7 @@ class AttendedEventsController < ApplicationController
     @attended_event = AttendedEvent.new(attended_event_params)
 
     if @attended_event.save!
-      redirect_to current_user
+      redirect_to event_path(params[:attended_event_id])
     else
       render :new, status: :unprocessable_entity
     end

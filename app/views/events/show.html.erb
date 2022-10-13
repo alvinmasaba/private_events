@@ -4,6 +4,14 @@
 <p>Where: <%= @event.location %>
 <p>Hosted by: <%= @event.creator.username %>
 
+<h2>Guests: </h2>
+
+<ol>
+  <% @event.guest_list.each do |guest| %>
+    <li><%= User.find(guest).username %></li>
+  <% end %>
+</ol>
+
 <% unless current_user.is_attending?(@event) %>
   <%= button_to "Attend This Event", attended_events_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
 <% end %>

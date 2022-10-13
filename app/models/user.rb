@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def is_attending?(event)
     AttendedEvent.exists?(:event_attendee_id => self.id, :attended_event_id => event.id)
   end
+
+  def events_attending
+    AttendedEvent.where(:event_attendee_id => self.id).pluck(:attended_event_id)
+  end
 end
