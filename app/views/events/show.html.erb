@@ -3,3 +3,5 @@
 <p>When: <%= @event.date.strftime("%B %d, %Y") %>
 <p>Where: <%= @event.location %>
 <p>Hosted by: <%= @event.creator.username %>
+
+<%= button_to "Attend This Event", attended_events_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
