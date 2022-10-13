@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :events_attended, foreign_key: :event_attendee_id
 
   has_many :attended_events, through: :events_attended
+
+  def is_attending?(event)
+    AttendedEvent.exists?(:event_attendee_id => self.id, :attended_event_id => event.id)
+  end
 end
