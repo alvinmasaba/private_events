@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
+
+  before_action :is_invited?, only: [:show]
 
   def index
     @events = Event.all
@@ -50,5 +52,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :date, :location)
+  end
+
+  def is_invited?
+    @event = Event.find(params[:id])
+    
+    Invite.exists?(event_id: params[:id], user_id: current_user.id) || current_user.is_creator?(@event)
   end
 end

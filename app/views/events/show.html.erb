@@ -2,9 +2,11 @@
 
 <p>When: <%= @event.date.strftime("%B %d, %Y") %>
 <p>Where: <%= @event.location %>
-<p>Hosted by: <%= @event.creator.username %>
+<% unless current_user.is_creator?(@event) %>
+  <p>Hosted by: <%= @event.creator.username %></p>
+<% end %>
 
-<h2>Guests: </h2>
+<h2>Confirmed Guests: </h2>
 
 <ol>
   <% @event.attendees.each do |attendee| %>
@@ -12,26 +14,10 @@
   <% end %>
 </ol>
 
-<% unless current_user.is_attending?(@event) %>
-  <%= button_to "Attend This Event", event_attendees_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
-<% end %>
-
-<% if current_user.is_attending?(@event) && Event.upcoming.include?(@event) %>
-  <% attended_event = EventAttendee.find_by(event_attendee_id: current_user.id, attended_event_id: @event.id) %>
-
-  <%= link_to "Flop", event_attendee_path(attended_event.id), data: {
-                                                                        turbo_method: :delete,
-                                                                        turbo_confirm: "Are you sure?"
-                                                                      }  %>
-<% end %>
-
-<br>
-
-<% if current_user.is_creator(@event) %>
-  <%= link_to "Edit Event", edit_event_path(@event) %>
-  <br>
-  <%= link_to "Delete Event", event_path(@event), data: {
-                                                            turbo_method: :delete,
-                                                            turbo_confirm: "Are you sure?"
-                                                          } %>
+<% if current_user.is_creator?(@event) %>
+  <%= render "creator_show", event: @event %>
+<% elsif current_user.is_attending?(@event) %>
+  <%= render "guest_show", event: @event %>
+<% else %>
+  <%= button_to "RSVP", event_attendees_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
 <% end %>

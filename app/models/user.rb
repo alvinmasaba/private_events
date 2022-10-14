@@ -10,11 +10,13 @@ class User < ApplicationRecord
 
   has_many :attended_events, through: :event_attendees, source: :attended_event
 
+  has_many :invites
+
   def is_attending?(event)
     event.attendees.include?(self)
   end
 
-  def is_creator(event)
-    self.id == event.creator_id
+  def is_creator?(event)
+    self == event.creator
   end
 end
