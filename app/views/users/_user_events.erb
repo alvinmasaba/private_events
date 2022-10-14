@@ -1,6 +1,0 @@
-<h2><%= event_type %></h2>
-<ol>
-  <% events.where("date #{op} ?", DateTime.current).each do |e| %>
-    <li><%= link_to "#{e.name}", event_path(e)%></li>
-  <% end %>
-</ol>

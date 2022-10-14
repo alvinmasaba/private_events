@@ -1,9 +1,17 @@
-<h1>My Events</h1>
-
-<% if @events.any? { |e| e.date < DateTime.current } %>
-  <%= render "user_events", events: @events, event_type: "Attended Events", op: "<" %>
+<% if @events.upcoming %>
+  <h1>Upcoming</h1>
+  <ol>
+    <% @events.upcoming.each do |e| %>
+      <li><%= link_to "#{e.name}", event_path(e)%></li>
+    <% end %>
+  </ol>
 <% end %>
 
-<% if @events.any? { |e| e.date > DateTime.current } %>
-  <%= render "user_events", events: @events, event_type: "Upcoming Events", op: ">" %>
+<% if @events.past %>
+  <h1>Attended</h1>
+  <ol>
+    <% @events.past.each do |e| %>
+      <li><%= link_to "#{e.name}", event_path(e)%></li>
+    <% end %>
+  </ol>
 <% end %>
