@@ -15,3 +15,7 @@
 <% unless current_user.is_attending?(@event) %>
   <%= button_to "Attend This Event", event_attendees_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
 <% end %>
+
+<% if current_user.is_creator(@event) %>
+  <%= link_to "Edit Event", edit_event_path(@event) %>
+<% end %>

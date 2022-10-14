@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def is_attending?(event)
     event.attendees.include?(self)
   end
+
+  def is_creator(event)
+    self.id == event.creator_id
+  end
 end
