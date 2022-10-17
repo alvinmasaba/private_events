@@ -6,16 +6,8 @@
   <p>Hosted by: <%= @event.creator.username %></p>
 <% end %>
 
-<h2>Confirmed Guests: </h2>
-
-<ol>
-  <% @event.attendees.each do |attendee| %>
-    <li><%= attendee.username %></li>
-  <% end %>
-</ol>
-
 <% if current_user.is_creator?(@event) %>
-  <%= render "creator_show", event: @event %>
+  <%= render "creator_show", event: @event, guests: @event.guests %>
 <% elsif current_user.is_attending?(@event) %>
   <%= render "guest_show", event: @event %>
 <% else %>

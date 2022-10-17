@@ -16,4 +16,16 @@ class Event < ApplicationRecord
   def is_upcoming?
     Event.upcoming.include?(self)
   end
+
+  def guests
+    User.joins(:event_attendees)
+  end
+
+  def invited_users
+    User.joins(:invites).where("invites.event_id = ? ", self)
+  end
+
+  def uninvited_users
+    User.where.not(id: self.invited_users, id: self.attendees)
+  end
 end

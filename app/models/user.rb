@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def is_creator?(event)
     self == event.creator
   end
+
+  def self.uninvited(event)
+    User.where("users.id NOT IN ? ", event.invited_users)
+  end
 end

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :event_attendees, only: [:new, :create, :destroy]
+
+  resources :invites
 end
