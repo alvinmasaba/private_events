@@ -20,7 +20,7 @@ class User < ApplicationRecord
     self == event.creator
   end
 
-  def self.uninvited(event)
-    User.where("users.id NOT IN ? ", event.invited_users)
+  def is_invited?(event)
+    event.invited_users.include?(self)
   end
 end

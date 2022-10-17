@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   root "events#index"
   
-  resources :events
+  resources :events do
+    resources :invites, only: [:new, :create]
+  end
 
   resources :users, only: [:show]
 
   resources :event_attendees, only: [:new, :create, :destroy]
-
-  resources :invites
 end

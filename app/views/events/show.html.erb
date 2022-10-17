@@ -8,8 +8,10 @@
 
 <% if current_user.is_creator?(@event) %>
   <%= render "creator_show", event: @event, guests: @event.guests %>
+
 <% elsif current_user.is_attending?(@event) %>
   <%= render "guest_show", event: @event %>
-<% else %>
+  
+<% elsif current_user.is_invited?(@event) %>
   <%= button_to "RSVP", event_attendees_path, params: { event_attendee_id: current_user, attended_event_id: @event } %>
 <% end %>

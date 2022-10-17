@@ -9,16 +9,17 @@
 <h2>Invited Guests</h2>
 
 <ol>
-  <% event.invited_users.each do |inv| %>
-    <li><%= inv.user.username %></li>
+  <% event.invited_users.each do |guest| %>
+    <li><%= guest.username %></li>
   <% end %>
 </ol>
 
 <h2>Uninvited Users</h2>
-  <% event.uninvited_users.each do |user| %>
-    <li><%= link_to "#{user.username}", invites_path(user, event), method: "post" %></li>
-  <% end %>
 <ol>
+  <% event.uninvited_users.each do |user| %>
+    <li><%= button_to "#{user.username}", event_invites_path(event), params: { event_id: event.id, user_id: user.id }, :class => 'invite-button' %></li>
+  <% end %>
+</ol>
 
 <br>
 

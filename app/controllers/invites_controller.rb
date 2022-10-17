@@ -9,7 +9,7 @@ class InvitesController < ApplicationController
     @invite = Invite.new(invite_params)
 
     if @invite.save!
-      redirect_to event_path(params[:event])
+      redirect_to event_path(params[:event_id])
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,8 +18,6 @@ class InvitesController < ApplicationController
   private
 
   def invite_params
-    params.require(:invite).permit(:user, :event)
+    params.permit(:event_id, :user_id)
   end
-
-
 end

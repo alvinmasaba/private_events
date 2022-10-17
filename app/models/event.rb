@@ -26,6 +26,6 @@ class Event < ApplicationRecord
   end
 
   def uninvited_users
-    User.where.not(id: self.invited_users, id: self.attendees)
+    User.where.not(id: self.invited_users).where.not(id: self.attendees)
   end
 end
