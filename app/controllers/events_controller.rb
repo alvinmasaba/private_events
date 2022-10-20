@@ -56,7 +56,6 @@ class EventsController < ApplicationController
 
   def is_invited?
     @event = Event.find(params[:id])
-    
-    Invite.exists?(event_id: params[:id], user_id: current_user.id) || current_user.is_creator?(@event)
+    current_user.is_invited?(@event) || current_user.is_creator?(@event)
   end
 end

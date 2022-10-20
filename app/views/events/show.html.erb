@@ -7,7 +7,7 @@
 <% end %>
 
 <% if current_user.is_creator?(@event) %>
-  <%= render "creator_show", event: @event, guests: @event.guests %>
+  <%= render "creator_show", event: @event %>
 
 <% elsif current_user.is_attending?(@event) %>
   <%= render "guest_show", event: @event %>
