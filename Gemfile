@@ -72,3 +72,8 @@ group :test do
 end
 
 gem 'devise'
+
+gem "omniauth-twitter", "~> 1.4"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "omniauth-discord", "~> 1.0"
